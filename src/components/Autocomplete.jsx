@@ -1,13 +1,12 @@
-import { useState } from "react";
 import useAutcomplete from "../hooks/useAutocomplete";
 import Suggestion from "./Suggestion";
-const Autocomplete = ({getLocation}) => {
-    const { suggestions, clearSuggestions, value, setValue, setSuggestions } = useAutcomplete()
+const Autocomplete = ({getInfo, endPoint}) => {
+    const { suggestions, value, setValue, setSuggestions } = useAutcomplete(endPoint)
     console.log(suggestions)
     const onHandlerSelect = ({url, name}) => {
         setValue('')
         setSuggestions([])
-        getLocation(url)
+        getInfo(url)
     }
 
     // const renderSuggestions = () =>
@@ -35,7 +34,7 @@ const Autocomplete = ({getLocation}) => {
                     setValue(e.target.value)
                 }}
                 
-                placeholder='city name'
+                placeholder={`${endPoint} name`}
                 />
             </div>
             {suggestions.length > 0 &&<ul>{suggestions?.map((suggestion)=>{

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const useAutcomplete = () => {
+const useAutcomplete = (endPoint) => {
     const [suggestions, setSuggestions] = useState([])
 
     const [value, setValue] = useState('')
@@ -9,7 +9,7 @@ const useAutcomplete = () => {
         if(value.length===0) return
         
        //setReady(false)
-        const apiURL = `https://rickandmortyapi.com/api/location/?name=${value}`
+        const apiURL = `https://rickandmortyapi.com/api/${endPoint}/?name=${value}`
         axios.get(apiURL)
             .then(res => {
                 setSuggestions(res.data.results)

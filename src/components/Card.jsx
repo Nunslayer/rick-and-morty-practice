@@ -6,8 +6,8 @@ const Card = ({resident}) => {
     const resi = () => {
         axios.get(resident)
             .then(res=> {
-                const {id, name, species, gender, image}=res.data
-                setCharacter({id, name, species, gender, image})
+                const {id, name, species, gender, image, status}=res.data
+                setCharacter({id, name, species, gender, image, status})
             })
     }
     // const residente = resi()
@@ -18,9 +18,9 @@ const Card = ({resident}) => {
               <div className="container-img">
                   <img src={character?.image} alt="" />
               </div>
-              <h1>{character?.name}</h1>
-              <p><span>{character?.species}</span><span>{character?.gender}</span></p>
-              
+              <h4>name: {character?.name}</h4>
+              <p><span>species: {character?.species} </span><span>gender: {character?.gender}</span></p>
+              <p><span>status: {character?.status}</span></p>
             </div>
         </>
     )
