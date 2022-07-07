@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Card from './components/Card'
 import CardEpisodes from './components/CardEpisodes'
@@ -7,7 +7,6 @@ import Autocomplete from './components/Autocomplete'
 
 function App() {
   const [info, setInfo] = useState({})
-  //const [character, setCharacter] = useState([])
   const [isReady, setIsReady] = useState(false)
   const [endPoint, setEndPoint] = useState('location')
   console.log('render')
@@ -56,77 +55,136 @@ function App() {
       .finally(()=>setIsReady(true) )
       return
     }
-    // axios.get(url)
-    //   .then(res => {
-    //     const {type, id, name, dimension, residents} = res.data
-    //     setLocation({type, id, name, dimension, residents})
-    //   })
-    //   .catch(error => console.log(error))
-    //   .finally(()=>setIsReady(true) )
   }
 
   if(!isReady) return <h2>loading....</h2>
-
-  // const {newResidents} = location
   return (
     <div className="App">
-      <div className="container-btns">
-        <button onClick={()=>setEndPoint('location')}>location</button>
-        <button onClick={()=>setEndPoint('episode')}>episodio</button>
-        <button onClick={()=>setEndPoint('character')}>character</button>
-      </div>
-      <Autocomplete 
-        getInfo={getInfo}
-        endPoint={endPoint}
-      />
-      {info.dimension?(<>
-      <h4>{info.id}</h4>
-      <h4>{info.name}</h4>
-      <h4>{info.dimension}</h4>
-      <h4>residents: {info.residents.length}</h4>
-      <div className="character-container">
-        {info.residents && info.residents.map((resi)=>{
-            return (
-              <Card 
-                key={resi}
-                resident={resi}
-              />
-            )
-        })}
-      </div>
-      </>):info.air_date?(<>
-      <h4>{info.name}</h4>
-      <h4>{info.episode}</h4>
-      <h4>{info.air_date}</h4>
-      <h4>characters: {info.characters.length}</h4>
-      <div className="character-container">
-        {info.characters && info.characters.map((resi)=>{
-            return (
-              <Card 
-                key={resi}
-                resident={resi}
-              />
-            )
-        })}
-      </div>
-      
-      </>):info.species?(<>
-      <h4>name: {info.name}</h4>
-      <h4>species: {info.species}</h4>
-      <h4>status: {info.status}</h4>
-      <h4>episodes: {info.episode.length}</h4>
-      <div className="character-container">
-        {info.episode && info.episode.map((episodeItem)=>{
-            return (
-              <CardEpisodes 
-                key={episodeItem}
-                episodeItem={episodeItem}
-              />
-            )
-        })}
-      </div>
-      </>):<h1>NADA QUE ENSEÑAR</h1>}
-      
+      <section className="header">
+        <div className="tittle-image">
+        </div>
+        <div className="container-btns">
+          {/* <span>Search by : </span> */}
+          <button 
+            className={endPoint==='location'?'btn-endPoint btn-is-on':'btn-endPoint'} 
+            onClick={()=>setEndPoint('location')}
+            >
+              Location
+          </button>
+          <button 
+            className={endPoint==='episode'?'btn-endPoint btn-is-on':'btn-endPoint'} 
+            onClick={()=>setEndPoint('episode')}
+            >
+              Episode
+          </button>
+          <button 
+            className={endPoint==='character'?'btn-endPoint btn-is-on':'btn-endPoint'} 
+            onClick={()=>setEndPoint('character')}
+            >
+              Character
+          </button>
+        </div>
+        <Autocomplete 
+          getInfo={getInfo}
+          endPoint={endPoint}
+        />
+      </section>
+      <section className='main'>
+        {info.dimension?(<>
+        <h1>LOCATION</h1>
+        <div className="card-info">
+          
+          <div className="info-section">
+            <p className="info-tittle">Name:</p>
+            <p className="info-description">{info.name}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Type:</p>
+            <p className="info-description">{info.type}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Dimension:</p>
+            <p className="info-description">{info.dimension}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Residents:</p>
+            <p className="info-description">{info.residents.length}</p>
+          </div>
+        </div>
+        <div className="character-container">
+          {info.residents && info.residents.map((resi)=>{
+              return (
+                <Card 
+                  key={resi}
+                  resident={resi}
+                />
+              )
+          })}
+        </div>
+        </>):info.air_date?(<>
+        <h1>EPISODE</h1>
+        <div className="card-info">
+          
+          <div className="info-section">
+            <p className="info-tittle">Name:</p>
+            <p className="info-description">{info.name}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Episode:</p>
+            <p className="info-description">{info.episode}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Release:</p>
+            <p className="info-description">{info.air_date}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Characters:</p>
+            <p className="info-description">{info.characters.length}</p>
+          </div>
+        </div>
+        <div className="character-container">
+          {info.characters && info.characters.map((resi)=>{
+              return (
+                <Card 
+                  key={resi}
+                  resident={resi}
+                />
+              )
+          })}
+        </div>
+        </>):info.species?(<>
+          <h1>CHARACTER</h1>
+          <div className="card-info">
+          
+          <div className="info-section">
+            <p className="info-tittle">Name:</p>
+            <p className="info-description">{info.name}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Species:</p>
+            <p className="info-description">{info.species}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Status:</p>
+            <p className="info-description">{info.status}</p>
+          </div>
+          <div className="info-section">
+            <p className="info-tittle">Episodes:</p>
+            <p className="info-description">{info.episode.length}</p>
+          </div>
+        </div>
+        <div className="character-container">
+          {info.episode && info.episode.map((episodeItem)=>{
+              return (
+                <CardEpisodes 
+                  key={episodeItem}
+                  episodeItem={episodeItem}
+                />
+              )
+          })}
+        </div>
+        </>):<h1>NADA QUE ENSEÑAR</h1>}
+      </section>
     </div>
   )
 }

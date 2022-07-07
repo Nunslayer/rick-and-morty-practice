@@ -6,11 +6,11 @@ const Card = ({resident}) => {
     const resi = () => {
         axios.get(resident)
             .then(res=> {
-                const {id, name, species, gender, image, status}=res.data
-                setCharacter({id, name, species, gender, image, status})
+                const {id, name, species, gender, image, status, episode}=res.data
+                setCharacter({id, name, species, gender, image, status, episode})
             })
     }
-    // const residente = resi()
+
     resi()
     return (
         <>
@@ -18,9 +18,24 @@ const Card = ({resident}) => {
               <div className="container-img">
                   <img src={character?.image} alt="" />
               </div>
-              <h4>name: {character?.name}</h4>
-              <p><span>species: {character?.species} </span><span>gender: {character?.gender}</span></p>
-              <p><span>status: {character?.status}</span></p>
+              <div className="container-status">
+                <div className={character.status==='Alive'?'status-lighter is-alive':character.status==='Dead'?'status-lighter is-dead':'status-lighter'}></div>
+                <span>{character?.status}</span>
+              </div>
+              <h3 className="info-character-name">{character?.name}</h3>
+              <div className="info-character-section">
+                <p className="info-character-tittle">SPECIES:</p>
+                <p className="info-character-description">{character?.species}</p>
+              </div>
+              <div className="info-character-section">
+                <p className="info-character-tittle">GENDER:</p>
+                <p className="info-character-description">{character?.gender}</p>
+              </div>
+              <div className="info-character-section">
+                <p className="info-character-tittle">EPISODES:</p>
+                <p className="info-character-description">{character?.episode?.length}</p>
+              </div>
+              
             </div>
         </>
     )

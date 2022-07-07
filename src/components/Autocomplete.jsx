@@ -9,23 +9,9 @@ const Autocomplete = ({getInfo, endPoint}) => {
         getInfo(url)
     }
 
-    // const renderSuggestions = () =>
-    // suggestions?.map((suggestion) => {
-    //   const {
-    //     name,
-    //     url
-    //   } = suggestion
-    //   return (
-    //     <li onClick={console.log('hola')}>
-    //       <strong>{name}</strong>
-    //     </li>
-    //   )
-    // })
-
     return (
-        <div className="container-form" >
-            <div className='container-input-autocomplete'>  
-                <input 
+        <div className="container-input-autocomplete" >
+            <input 
                 className='input-autocomplete'
                 type='text'
                 value={value}
@@ -33,10 +19,8 @@ const Autocomplete = ({getInfo, endPoint}) => {
                     e.preventDefault
                     setValue(e.target.value)
                 }}
-                
-                placeholder={`${endPoint} name`}
-                />
-            </div>
+                placeholder={`Type ${endPoint} name to search...`}
+            />
             {suggestions.length > 0 &&<ul>{suggestions?.map((suggestion)=>{
                 const {url} = suggestion
                 return (
