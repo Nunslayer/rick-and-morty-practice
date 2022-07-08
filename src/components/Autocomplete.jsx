@@ -1,11 +1,11 @@
 import useAutcomplete from "../hooks/useAutocomplete";
 import Suggestion from "./Suggestion";
 const Autocomplete = ({getInfo, endPoint}) => {
-    const { suggestions, value, setValue, setSuggestions } = useAutcomplete(endPoint)
+    const { suggestions, value, setValue, clearSuggestions } = useAutcomplete(endPoint)
     console.log(suggestions)
     const onHandlerSelect = ({url, name}) => {
         setValue('')
-        setSuggestions([])
+        clearSuggestions()
         getInfo(url)
     }
 

@@ -5,7 +5,8 @@ import CardEpisodes from './components/CardEpisodes'
 import './App.css'
 import Autocomplete from './components/Autocomplete'
 import MainBoard from './components/MainBoard'
-
+import background from './assets/images/image3.png'
+import titleBackground from './assets/images/image2.png'
 function App() {
   const [info, setInfo] = useState({})
   const [isReady, setIsReady] = useState(false)
@@ -34,42 +35,15 @@ function App() {
       })
       .catch(error => console.log(error))
       .finally(()=>setIsReady(true) )
-    // console.log(url)
-    // if(url.includes('episode')){
-    //   axios.get(url)
-    //   .then(res => {
-    //     const {air_date, id, name, characters, episode} = res.data
-    //     setInfo({air_date, id, name, characters, episode})
-    //   })
-    //   .catch(error => console.log(error))
-    //   .finally(()=>setIsReady(true) )
-    //   return
-    // }if(url.includes('location')){
-    //   axios.get(url)
-    //   .then(res => {
-    //     const {type, id, name, dimension, residents} = res.data
-    //     setInfo({type, id, name, dimension, residents})
-    //   })
-    //   .catch(error => console.log(error))
-    //   .finally(()=>setIsReady(true) )
-    //   return
-    // }if(url.includes('character')){
-    //   axios.get(url)
-    //   .then(res => {
-    //     const {id, name, species, gender, image, status, episode} = res.data
-    //     setInfo({id, name, species, gender, image, status, episode})
-    //   })
-    //   .catch(error => console.log(error))
-    //   .finally(()=>setIsReady(true) )
-    //   return
-    // }
   }
 
   if(!isReady) return <h2>loading....</h2>
   return (
     <div className="App">
       <section className="header">
+        <img src={background} alt="" />
         <div className="tittle-image">
+          <img src={titleBackground} alt="" />
         </div>
         <div className="container-btns">
           {/* <span>Search by : </span> */}

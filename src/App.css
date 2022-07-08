@@ -6,6 +6,9 @@
 body{
     background: #05292E;
 }
+button:hover{
+    cursor: pointer;
+}
 .header{
     display: flex;
     flex-direction: column;
@@ -13,22 +16,25 @@ body{
     align-items: center;
     position: relative;
     width: 100%;
-    height:372px ;
-    background-image: url(./assets/images/image3.png);
-    background-size: contain;
+    height:38vh ;
+}
+.header>img{
+    width: 100%;
+    height: 100%;
 }
 .tittle-image{
-    /* position: absolute; */
     position: absolute;
-    top: 20px;
-    width: 454px;
-    height: 176px;
-    background-image: url(./assets/images/image2.png);
-    background-size: contain;
+    top: 5%;
+    width: 35%;
+    height: 45%;
+}
+.tittle-image>img{
+    width: 100%;
+    height: 100%;
 }
 .container-btns{
     position: absolute;
-    top: 210px;
+    top: 45%;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -51,9 +57,10 @@ body{
 }
 .container-input-autocomplete{
     position: absolute;
-    top: 240px;
+    top: 60%;
     width: 40%;
     max-height: 200px;
+    z-index: 500;
 }
 .input-autocomplete{
     width: 100%;
@@ -69,7 +76,7 @@ ul{
 }
 li{
     list-style: none;
-    background-color: rgba(240, 248, 255, 0.493);
+    background-color: rgba(240, 248, 255, 0.95);
     padding: 0 1em;
 }
 li:hover{
@@ -126,14 +133,27 @@ h1{
     row-gap: 1.5rem;
     justify-content: space-between;
 }
+@media screen and (max-width: 1440px){
+    .main{
+        padding: 0 15%; 
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .main{
+        padding: 0 5%; 
+    }
+}
 
 .character-card{
+    margin: 0 auto;
     position: relative;
     background: #062226;
     color: aliceblue;
     width: 350px;
-    /* padding-bottom: 1rem; */
 }
+
+
 .container-img>img{
     width: 100%;
 }
@@ -215,4 +235,45 @@ h1{
 .page.page-c{
     background: #062226;
     font-weight: bolder;
+}
+@media screen and (max-width: 400px){
+    .header{
+        height: 25vh;
+    }
+    .main{
+        padding: 0 2%;
+    }
+    .btn-endPoint{
+        font-size: 10px;
+    }
+    .tittle-image{
+        width: 40%;
+    }
+    .container-input-autocomplete{
+        width: 60%;
+    }
+    h1{
+        font-size: 16px;
+    }
+    
+    .info-tittle{
+        font-size: 16px;
+    }
+    .info-description{
+        font-size: 12px;
+        width: min-content;
+    }
+    .character-card{
+        width: 290px;
+    }
+    .info-character-name{
+        font-size: 26px;
+    }
+    .info-character-tittle{
+        color: #7E7E7E;
+        font-size:12px ;
+    }
+    .info-character-description{
+        font-size:16px;
+    }
 }

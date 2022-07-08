@@ -1,26 +1,41 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useMemo} from 'react'
 import axios from 'axios'
+import debounceFunction from '../service/debounceFunction'
 
 const useAutcomplete = (endPoint) => {
     const [suggestions, setSuggestions] = useState([])
 
     const [value, setValue] = useState('')
+    const debounceGetSuggestions = useMemo(()=>{
+        const getSuggestions = (endPoint, valueOne) =>{
+            const apiURL = `https://rickandmortyapi.com/api/${endPoint}/?name=${valueOne}`
+            axios.get(apiURL)
+                .then(res => {
+                    setSuggestions(res.data.results)
+                    console.log('hice un fetch')
+                })
+        }
+        return debounceFunction(getSuggestions, 500)
+    },[])
     useEffect(()=>{
-        if(value.length===0) return
-        
-       //setReady(false)
-        const apiURL = `https://rickandmortyapi.com/api/${endPoint}/?name=${value}`
-        axios.get(apiURL)
-            .then(res => {
-                setSuggestions(res.data.results)
-                //setReady(true)
-            })
+        // const getSuggestions = () =>{
+        //     const apiURL = `https://rickandmortyapi.com/api/${endPoint}/?name=${value}`
+        //     axios.get(apiURL)
+        //         .then(res => {
+        //             setSuggestions(res.data.results)
+        //         })
+        // }
+        if(value !== ''){
+            debounceGetSuggestions(endPoint, value)
+        }else{
+            setSuggestions([])
+        }
           
     },[value])
     
     
     const clearSuggestions = () =>{
-        return setSuggestions([])
+        setSuggestions([])
     }
 
 

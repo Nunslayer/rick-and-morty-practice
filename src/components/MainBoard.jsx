@@ -52,15 +52,6 @@ const MainBoard = ({info}) =>{
                         This location dont have residents
                     </h2>:
                     <ItemsPagination itemArray={itemArray}/>
-                    // <div className="character-container">
-                    //     {info.residents.map((resi)=>{
-                    //     return (
-                    //         <Card 
-                    //             key={resi}
-                    //             resident={resi}
-                    //         />
-                    //     )})}
-                    // </div>
                 }
             </>):
             info.air_date?
@@ -72,15 +63,6 @@ const MainBoard = ({info}) =>{
                         This episode dont have characters
                     </h2>:
                     <ItemsPagination itemArray={itemArray}/>
-                    // <div className="character-container">
-                    //     {info.characters.map((resi)=>{
-                    //     return (
-                    //         <Card 
-                    //             key={resi}
-                    //             resident={resi}
-                    //         />
-                    //     )})}
-                    // </div>
                 }
             </>):
             info.species?
@@ -92,15 +74,6 @@ const MainBoard = ({info}) =>{
                         This location dont have characters
                     </h2>:
                     <EpisodesPagination itemArray={itemArray}/>
-                    // <div className="character-container">
-                    //     {info.episode.map((episodeItem)=>{
-                    //     return (
-                    //         <CardEpisodes 
-                    //             key={episodeItem}
-                    //             episodeItem={episodeItem}
-                    //         />
-                    //     )})}
-                    // </div>
                 }
             </>):
             <h1>NADA QUE ENSEÑAR</h1>}
