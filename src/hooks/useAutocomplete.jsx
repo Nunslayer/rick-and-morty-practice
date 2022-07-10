@@ -14,7 +14,7 @@ const useAutcomplete = (endPoint) => {
                     setSuggestions(res.data.results)
                 })
         }
-        return debounceFunction(getSuggestions, 300)
+        return debounceFunction(getSuggestions, 200)
     },[])
     useEffect(()=>{
         if(value !== ''){
