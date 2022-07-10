@@ -12,19 +12,11 @@ const useAutcomplete = (endPoint) => {
             axios.get(apiURL)
                 .then(res => {
                     setSuggestions(res.data.results)
-                    console.log('hice un fetch')
                 })
         }
-        return debounceFunction(getSuggestions, 500)
+        return debounceFunction(getSuggestions, 300)
     },[])
     useEffect(()=>{
-        // const getSuggestions = () =>{
-        //     const apiURL = `https://rickandmortyapi.com/api/${endPoint}/?name=${value}`
-        //     axios.get(apiURL)
-        //         .then(res => {
-        //             setSuggestions(res.data.results)
-        //         })
-        // }
         if(value !== ''){
             debounceGetSuggestions(endPoint, value)
         }else{
@@ -33,12 +25,9 @@ const useAutcomplete = (endPoint) => {
           
     },[value])
     
-    
     const clearSuggestions = () =>{
         setSuggestions([])
     }
-
-
 
     return {
        suggestions, clearSuggestions, value, setValue, setSuggestions
